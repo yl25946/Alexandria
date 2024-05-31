@@ -152,6 +152,9 @@ bool SEE(const Position* pos, const int move, const int threshold) {
     Bitboard bishops = GetPieceBB(pos, BISHOP) | GetPieceBB(pos, QUEEN);
     Bitboard rooks = GetPieceBB(pos, ROOK) | GetPieceBB(pos, QUEEN);
 
+    attackers |= GetBishopAttacks(to, occupied) & bishops;
+    attackers |= GetRookAttacks(to, occupied) & rooks;
+
     int side = Color[attacker] ^ 1;
 
     // Make captures until one side runs out, or fail to beat threshold
